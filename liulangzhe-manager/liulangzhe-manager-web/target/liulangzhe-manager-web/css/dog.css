@@ -1,0 +1,492 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #FFFFFF;
+    height: 8888px;
+}
+.w{
+    margin: 0 auto;
+    width: 1000px;
+}
+.cl{
+    clear: both;
+}
+ul{
+    list-style: none;
+}
+header{
+    height: 20px;
+    padding: 10px 0 10px 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ccc;
+}
+.logo {
+    width: 150px;
+    height: 60px;
+    float: left;
+    background: url("../images/logo1.png") no-repeat;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+/*头*/
+.nav{
+    float: right;
+    height: 20px;
+}
+.nav ul li{
+    width: 50px;
+    height: 20px;
+    text-align: center;
+    float: left;
+    position: relative;
+    margin: 0 15px 0 15px;
+    line-height: 20px;
+}
+.bd2{
+    border-bottom: 3px solid #f2473d;
+    padding-bottom: 7px;
+}
+.nav ul .fenlei{
+    padding-right: 18px;
+}
+.nav .lastli{
+    margin-right: 50px;
+}
+.nav ul li:hover{
+    border-bottom: 3px solid #f2473d;
+    padding-bottom: 7px;
+}
+.nav a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #000;
+    font-size: 12px;
+}
+
+.zhuce,.land,address{
+    float: right;
+    text-decoration: none;
+    font-size: 14px;
+    color: #000;
+}
+.zhuce{
+    margin-right: 20px;
+    border-left: 1px solid #f2473d;
+    padding-left: 50px;
+}
+.land{
+    margin-right: 150px;
+}
+header address{
+    height: 20px;
+    line-height: 20px;
+    margin-right: 150px;
+    border-left: 1px solid #f2473d;
+    padding-left: 50px;
+    font-style: normal;
+    cursor: pointer;
+    font-size: 13px;
+}
+.hd{
+    overflow: hidden;
+}
+header address ul li{
+    padding-top: 5px;
+    height: 25px;
+    line-height: 25px;
+}
+header address ul li:hover{
+    background-color: #eee;
+}
+.daohangtiao{
+    width: 1000px;
+    height: 40px;
+    background-color: #f2473d;
+    margin-top: 20px;
+    border-radius: 5px;
+    position: relative;
+}
+.daohangtiao ul li{
+    width: 200px;
+    height: 40px;
+    float: left;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+.daohangtiao ul li a{
+    color: #fff;
+    text-decoration: none;
+}
+.daohangtiao ul li:hover{
+    background-color: #f3574d;
+}
+.daohangtiao ul .first:hover{
+    background-color: #f3574d;
+    border-radius: 5px 0 0 5px; ;
+}
+.daohangtiao ul .last:hover{
+    background-color: #f3574d;
+    border-radius: 0 5px 5px 0;
+}
+.bd{
+    width: 1px;
+    height: 100px;
+    background-color: #f2473d;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -50px;
+}
+.mask{
+    width: 100%;
+    height: 150px;
+    background-color: rgb(255,250,226);
+    position: absolute;
+    top: 40px;
+    display: none;
+    z-index: 10;
+}
+.mask dl{
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 13px;
+    float: left;
+    position: relative;
+    padding-left: 10px;
+}
+.mask dl a{
+    color: #f2473d;
+}
+.mask dl a:hover{
+    color: #f3574d;
+}
+.main-l{
+    float: left;
+    width: 700px;
+    height: 50px;
+    margin-top: 30px;
+    background-color: #fff;
+    position: relative;
+    -webkit-box-shadow: 2px 2px 2px #ccc;
+    -moz-box-shadow: 2px 2px 2px #ccc;
+    box-shadow: 2px 0px 2px #ccc;
+}
+.main-l ul{
+    width: 700px;
+    margin-left: 10px;
+}
+.main-l ul li{
+    float: left;
+    font-size: 16px;
+    margin-right: 40px;
+    line-height: 40px;
+    margin-top: 7px;
+    cursor: pointer;
+}
+.content{
+    width: 700px;
+    height: 1000px;
+    margin-top: 10px;
+    background-color: #fff;
+}
+.bd1{
+    border-bottom: 3px solid #f2473d;
+}
+.content{
+    position: relative;
+    -webkit-box-shadow: 2px 2px 2px #ccc;
+    -moz-box-shadow: 2px 2px 2px #ccc;
+    box-shadow: 2px 2px 2px #ccc;
+}
+.fatie{
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #f2473d;
+    border: none;
+    line-height: 30px;
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+    outline: none;
+}
+.fatie:hover{
+    background-color: #e3473d;
+}
+
+/*跟随广告*/
+#aside-l{
+    position: absolute;
+    left: 0;
+    top: 222px;
+}
+/*头部滚动条*/
+.scroll{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+    background-color: rgb(255,250,227);
+    overflow: hidden;
+}
+.scroll ul{
+    width: 500px;
+    position: absolute;
+}
+.scroll ul li{
+    font-size: 14px;
+    color: #000;
+}
+/*头部滚动条结束*/
+
+
+
+/*红色导航条*/
+.nav2{
+    width: 100%;
+    height: 60px;
+    background-color: #f2473d;
+    margin-top: 20px;
+}
+.nav2 ul li{
+    float: left;
+    line-height: 60px;
+    width: 120px;
+    height: 60px;
+    text-align: center;
+}
+.nav2 ul li a{
+    color: #FFF;
+}
+.nav2 ul li:nth-child(2){
+    background-color: #e3473d;
+}
+.nav2 ul li:hover{
+    background-color: #e3473d;
+}
+/*红色导航条结束*/
+
+
+
+
+/*轮播图*/
+ul,ol{
+    list-style: none;
+}
+.box{
+    width: 760px;
+    height: 300px;
+    position: relative;
+    float: left;
+    background-color: #fff;
+}
+.screen{
+    width: 760px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+.ul{
+    position: absolute;
+    width: 3800px;
+    height: 300px;
+}
+.ul img{
+    width: 760px;
+    height: 300px;
+}
+.ul li{
+    width: 760px;
+    height: 300px;
+    float: left;
+}
+.ol{
+    position: absolute;
+    left: 50%;
+    margin-left: -60px;
+    bottom: 10px;
+    z-index: 10;
+}
+.ol li{
+    width: 10px;
+    height: 10px;
+    border: 2px solid #b9beba;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    float: left;
+    margin-left: 16px;
+}
+.ol .current{
+    background-color: #ffffff;
+}
+.arrow-l,.arrow-r{
+    height: 62px;
+    width: 28px;
+    background-color: rgba(0,0,0,.4);
+    position: absolute;
+    text-align: center;
+    font: 400 15px/62px "宋体";
+    top: 50%;
+    margin-top: -31px;
+    color: #fff;
+    cursor: pointer;
+}
+.arrow-l{
+    left: 0;
+}
+.arrow-r{
+    right: 0;
+}
+.arrow-l:hover,.arrow-r:hover{
+    background-color: rgba(0,0,0,.6);
+}
+.box .shadow{
+    width: 720px;
+    height: 35px;
+    position: absolute;
+    background-color: rgba(0,0,0,.3);
+    bottom: 0;
+    padding: 20px 20px;
+}
+.box .shadow p{
+    color: #ddd;
+}
+.box .shadow a{
+    color: #fff;
+}
+.box .shadow a:hover{
+    text-decoration: underline;
+}
+.home img{
+    width: 240px;
+    height: 300px;
+    cursor: pointer;
+}
+.home{
+    float: left;
+    background-color: #fff;
+}
+/*轮播图结束*/
+
+/*养狗宝典*/
+.ygbd{
+    width: 1000px;
+    margin-top: 20px;
+}
+.ygbd h2{
+    font-weight: 600;
+    font-size: 28px;
+    color: #f2473d;
+}
+.ygbd ul{
+    width: 100%;
+    margin-top: 10px;
+}
+.ygbd ul li{
+    float: left;
+    font-size: 16px;
+    padding-right: 30px;
+}
+.ygbd ul li:first-child{
+    color: #f2473d;
+}
+.lyxz{
+    width: 1000px;
+    height: 300px;
+    border: 1px solid #000;
+    margin-top: 10px;
+}
+/*养狗宝典结束*/
+
+/*狗狗图鉴开始*/
+.ggtj{
+    margin-top: 20px;
+    width: 1000px;
+    height: 200px;
+}
+.ggtj h2{
+    font-weight: 600;
+    font-size: 28px;
+    color: #f2473d;
+}
+.ggtj ul{
+    width: 100%;
+    margin-top: 20px;
+}
+.ggtj ul li{
+    width: 180px;
+    height: 169px;
+    float: left;
+    position: relative;
+    margin-right: 25px;
+    cursor: pointer;
+}
+.ggtj ul li:hover{
+    -webkit-box-shadow: 4px 4px 4px #ccc;
+    -moz-box-shadow: 4px 4px 4px #ccc;
+    box-shadow: 4px 4px 4px #ccc;
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    transform: translateY(-10px);
+}
+.ggtj ul li:nth-child(5){
+    margin: 0;
+}
+.ggtj ul li aside{
+    position: absolute;
+    width: 180px;
+    height: 34px;
+    background-color: #eef1f1;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    line-height: 34px;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+}
+.ggtj ul li aside:hover{
+    color: #f2473d;
+}
+/*倒三角*/
+i,b{
+    position: absolute;
+}
+b{
+    width: 18px;
+    height: 40px;
+    top: -10px;
+    right: 0;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000;
+    cursor: pointer;
+}
+i{
+    width: 18px;
+    height: 20px;
+    font-style: normal;
+    top: 19px;
+    right: 130px;
+    overflow: hidden;
+    font-weight: 400;
+}
+
+

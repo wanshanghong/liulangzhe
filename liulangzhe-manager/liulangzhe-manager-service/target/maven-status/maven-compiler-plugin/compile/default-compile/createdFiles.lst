@@ -1,0 +1,9 @@
+cn\liulangzhe\service\impl\VaccineServiceImpl.class
+cn\liulangzhe\service\impl\PostServiceImpl.class
+cn\liulangzhe\service\impl\AnimalServiceImpl.class
+cn\liulangzhe\service\impl\Rescue_StationServiceImpl.class
+cn\liulangzhe\service\impl\NewsServiceImpl.class
+cn\liulangzhe\service\impl\TribuneServiceImpl.class
+cn\liulangzhe\service\impl\HostServiceImpl.class
+cn\liulangzhe\service\impl\IndexServiceImpl.class
+cn\liulangzhe\service\impl\UserServiceImpl.class

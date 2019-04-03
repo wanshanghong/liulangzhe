@@ -1,0 +1,132 @@
+
+ol.page-ol{
+
+    display: inline-block;
+
+    line-height: 2em;
+
+    font-size: 1em;
+
+}
+
+ol.page-ol li{
+    padding: 5px;
+    width: 16px;
+    height: 16px;
+    font-size: 13px;
+    color: #000;
+    display: inline-block;
+    line-height: 16px;
+    margin: 5px;
+
+    cursor:pointer;
+
+    
+
+}
+
+ol.page-ol li:hover,ol.page-ol li.hover,.prev-btn:hover,.next-btn:hover,.enter-btn span.hover,.prev-btn.hover,.next-btn.hover{
+
+    background-color: #f2473d;
+
+    font-size: 13px;
+
+    color:#fff;
+
+}
+
+.page-Select{
+
+    display: inline-block;
+
+    height: 2em;
+
+    border:1px solid #ddd;
+
+    font-size:1em;
+
+}
+
+.prev-btn,.next-btn{
+
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    width: auto;
+    padding: 5px;
+    margin: 5px;
+    font-size: 13px;
+
+
+    cursor: pointer;
+
+
+
+}
+
+.next-btn{}
+
+.pageMark{
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.enter-btn input,#enter-btn span{
+
+    display: inline-block;
+
+    width: 30px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 13px;
+
+    cursor: pointer;
+
+    border: 1px solid #ddd;
+
+    /*//width:2em;*/
+
+}
+.enter-btn span{
+    font-size: 13px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.enter-btn input{
+
+    margin-left: 10px;
+    text-align: center;
+}
+
+.page-nation {
+
+    display: flow-root;
+
+    text-align: center;
+    padding: 10px;
+
+}
+
+.disabled{
+
+    background: #C9C9C9!important;
+
+    pointer-events: none;
+
+    color: #fff !important;
+
+}
+
+div,ul,li,ol,table,td,th,span,strong,i,p{
+
+    -moz-user-select:none;/*火狐*/
+
+    -webkit-user-select:none;/*webkit浏览器*/
+
+    -ms-user-select:none;/*IE10*/
+
+    -khtml-user-select:none;/*早期浏览器*/
+
+    user-select:none;
+
+}

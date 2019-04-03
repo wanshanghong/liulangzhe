@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 写Sql语句   -->
+<mapper namespace="cn.liulangzhe.mapper.IndexMapper">
+
+	<!-- 查询所有的theme  --> 
+	<select id="findalltheme" resultType="cn.liulangzhe.pojo.Theme">
+		select * from theme
+	</select>
+</mapper>

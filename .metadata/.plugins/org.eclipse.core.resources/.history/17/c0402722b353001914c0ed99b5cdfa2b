@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>流浪者 - 救助站导航</title>
+    <style type="text/css">
+        *{margin:0;padding:0;}
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .map{width:100%;height:100%;border:1px solid #666;float:left;}
+        .txt{
+            position: absolute;
+            top: 0;
+            left: 100px;
+        }
+        .txt input{width: 200px;
+            height: 30px;
+            float: left;
+            margin: 20px;
+            border:1px solid #ccc;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="map" class="map"></div>
+<div id="r-result"></div>
+<div id="txt" class="txt">
+    <input type="text" id="keyword" placeholder="输入关键字查找地点">
+    <input type="text" id="province" placeholder="显示具体省" readonly style="background: #dcdcdc;">
+    <input type="text" id="city" placeholder="显示具体市" readonly style="background: #dcdcdc;">
+    <input type="text" id="address" placeholder="显示具体地址" readonly style="background: #dcdcdc;">
+</div>
+</body>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DPseD968ssGlplEf1T8h9RbHqIeQjrBk"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+<script type="text/javascript">
+    window.onload=function(){
+        var oKeyword = document.getElementById("keyword");
+        var oProvince = document.getElementById("province");
+        var oCity = document.getElementById("city");
+        var oAddress = document.getElementById("address");
+
+        var foo = {
+            //后面的操作，都是把地址信息填入这个address，所以传给后台的时候就可以直接传这个数据
+            address : {
+                province : '',
+                provinceCode : '0',
+                city : '',
+                cityCode : '0',
+                district : '',
+                districtCode : '0',
+                longitude : '',
+                latitude : ''
+            },
+            // 根据point来初始化地图
+            initMap : function(lng,lat){
+                var _this = this;
+
+                var map = new BMap.Map("map");  // 创建Map实例
+                var point = new BMap.Point(lng, lat)    // 创建点坐标
+                map.centerAndZoom(point, 15);   // 初始化地图,设置中心点坐标和地图级别
+                map.enableScrollWheelZoom(true);    //开启鼠标滚轮缩放
+                // map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+
+                // 地图的一些配置项
+                var navigationControl = new BMap.NavigationControl({
+                    anchor: BMAP_ANCHOR_TOP_LEFT,   // 靠左上角位置
+                    type: BMAP_NAVIGATION_CONTROL_LARGE,    // LARGE类型
+                    enableGeolocation: true // 启用显示定位
+                });
+                map.addControl(navigationControl);// 缩放标尺
+
+                // 添加中心小红点
+                var centerPoint = new BMap.Marker(point);
+                map.addOverlay(centerPoint);
+
+
+                // 当前位置写入右侧input
+                var myGeo = new BMap.Geocoder();
+                myGeo.getLocation(new BMap.Point(lng, lat),function (result) {
+                    _this.callBack(result,'drag')
+                });
+
+                _this.dragMap(map,centerPoint); //添加拖拽事件
+
+                //建立一个自动完成的对象，keyword出现下拉选择
+                var ac = new BMap.Autocomplete({
+                    "input" : "keyword",
+                    "location" : map
+                });
+                ac.addEventListener("onconfirm", function(e) {
+                    // console.log(e)
+                    var thisValue = e.item.value;
+                    // console.log(thisValue)
+                    var thisProvince = thisValue.province;
+                    var thisCity = thisValue.city;
+                    var thisDistrict = thisValue.district;
+                    var thisStreet = thisValue.street;
+                    var thisStreetNumber = thisValue.streetNumber;
+                    var thisBusiness = thisValue.business;
+
+                    var thisKey = thisProvince+thisCity+thisDistrict+thisStreet+thisStreetNumber+thisBusiness;
+
+                    _this.searchByKey(map,thisKey,centerPoint);
+                });
+
+
+                //请求救助站地点分布
+                var xhr = new XMLHttpRequest();
+                xhr.open("post","地图数据库.html");
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("11");
+                xhr.onreadystatechange = function (ev) {
+                    if(xhr.readyState == 4 && xhr.status == 200){
+                        var json = JSON.parse(xhr.responseText);
+                        var myIcon = new BMap.Icon("images/chongwu.png", new BMap.Size(32,32));
+                        for(var i=0;i<json.length;i++) {
+                            var opts = {
+                                title  : json[i].sid,      //标题
+                                width  : 290,             //宽度
+                                height : 90,              //高度
+                                enableSendToPhone:false,    //隐藏发送短信按钮
+                                panel  : "gjlx",         //检索结果面板
+                                enableAutoPan : true,     //自动平移
+                                searchTypes   :[/*留空可以隐藏检索窗口*/
+                                    //BMAPLIB_TAB_SEARCH,   //周边检索
+                                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                                ]
+                            };
+                            var marker1 = new BMap.Marker(new BMap.Point(json[i].lng, json[i].lat), {icon: myIcon});  // 创建标注
+                            map.addOverlay(marker1);               // 将标注添加到地图中
+                            var content = json[i].content;
+                            addClickHandler(content,marker1);
+                            var label = new BMap.Label(content.toString(),{offset:new BMap.Size(-11,23)});
+                            label.setStyle({
+                                color : "#f2473d",
+                                fontSize : "12px",
+                                border :"0",
+                                fontWeight :"bold",
+                                borderRadius: "4px"
+                            });
+                            marker1.setLabel(label);
+                            map.addEventListener("zoomend",function () {
+                                var zoomnub  = map.getZoom();
+                                var allOverlay = map.getOverlays();
+                                if(zoomnub<=11){
+                                    allOverlay.forEach(function(marker) {
+                                        marker.hide();
+                                    })
+                                } else {
+                                    allOverlay.forEach(function(marker) {
+                                        marker.show();
+                                    })
+                                }
+                            })
+                        }
+                        var searchInfoWindow = null;
+                        function addClickHandler(content,marker1){
+                            /*创建带检索功能的信息窗*/
+                            var SearchInfoWindow = new BMapLib.SearchInfoWindow(map,content,opts);
+                            /*
+                            添加事件监听函数
+                            */
+                            marker1.addEventListener("click", function(e){ SearchInfoWindow.open(marker1); });
+                        }
+                    }
+                }
+
+            },
+            // 地图拖拽
+            dragMap : function(map,centerPoint){
+                var _this = this;
+                var myGeo = new BMap.Geocoder();
+
+                map.addEventListener("dragging", function showInfo() {
+                    var cp = map.getCenter();
+                    centerPoint.setPosition(new BMap.Point(cp.lng, cp.lat));
+                    map.panTo(new BMap.Point(cp.lng, cp.lat));
+                    map.centerAndZoom(centerPoint.getPosition(), map.getZoom());
+                });
+
+                map.addEventListener("dragend",function showInfo() {
+                    var cp = map.getCenter();
+                    myGeo.getLocation(new BMap.Point(cp.lng, cp.lat),function (result) {
+                        // console.log(result)
+                        centerPoint.setPosition(new BMap.Point(cp.lng, cp.lat));
+                        map.panTo(new BMap.Point(cp.lng, cp.lat));
+                        map.centerAndZoom(centerPoint.getPosition(), map.getZoom());
+
+                        _this.callBack(result,'drag')
+                    });
+                });
+            },
+            // 地图拖拽后 和 输入关键字后选择 的回调函数
+            callBack : function(result,tag){
+                var _this = this;
+                var thisAddress = result.addressComponents;
+                if(thisAddress.province == "新疆维吾尔自治区" || thisAddress.province == "西藏自治区"){
+                    alert("很抱歉，新疆和西藏地区暂不支持该服务，敬请期待。");
+                    oKeyword.value = "";
+                    oProvince.value = "";
+                    oCity.value = "";
+                    oAddress.value = "";
+                }else{
+                    // if(tag==='drag'){
+                    //     oKeyword.value = result.address;
+                    // }
+                    oProvince.value = thisAddress.province;
+                    oCity.value = thisAddress.city;
+                    oAddress.value = thisAddress.district + thisAddress.street + thisAddress.streetNumber;
+
+                    // console.log(result);
+                    _this.address.province = thisAddress.province;
+                    _this.address.city = thisAddress.city;
+                    _this.address.district = thisAddress.district;
+                    _this.address.longitude = result.point.lng;
+                    _this.address.latitude = result.point.lat;
+                }
+                console.log(JSON.stringify(_this.address))
+            },
+            // 输入关键字搜索，根据关键字更新地图并获取信息
+            searchByKey : function(map,keyword,centerPoint){
+                var _this = this;
+
+                var localSearch = new BMap.LocalSearch(map);
+                localSearch.enableAutoViewport();
+                localSearch.search(keyword);
+                localSearch.setSearchCompleteCallback(function (searchResult) {
+                    if(searchResult && searchResult.getPoi(0)){
+                        var poi = searchResult.getPoi(0);
+                        if(poi.point){
+                            map.centerAndZoom(poi.point,15);
+                            centerPoint.setPosition(poi.point);
+
+                            var myGeo = new BMap.Geocoder();
+                            myGeo.getLocation(poi.point, function(result){
+                                _this.callBack(result)
+                            });
+                        }
+                    }
+                })
+            },
+            // 一般初始化地图，设置北京天安门
+            init : function(){
+                _this.initMap(116.404,39.915)
+            },
+            // 初始化当前城市
+            initLocalCity : function(){
+                var _this = this;
+
+                var map = new BMap.Map("map");
+                var myCity = new BMap.LocalCity();
+                myCity.get(function(result){
+                    console.log(result);
+                    // var point = result.center;
+                    var lng = result.center.lng;
+                    var lat = result.center.lat;
+
+                    _this.initMap(lng,lat)
+                });
+            },
+            // 初始化当前位置
+            initLocalPoint : function(){
+                var _this = this;
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var lng = position.coords.longitude;
+                        var lat = position.coords.latitude;
+                        // console.log(lng+':'+lat);
+                        var gpsPoint = new BMap.Point(lng, lat);
+
+                        // 坐标转成百度需要的坐标，并初始化地图
+                        // gpsPoint：转换前坐标，第二个参数为转换方法，0表示gps坐标转换成百度坐标，callback回调函数，参数为新坐标点
+                        BMap.Convertor.translate(gpsPoint, 0, function(data){
+                            _this.initMap(data.lng,data.lat);
+                        })
+                    })
+                } else {
+                    alert("Your browser does not support Geolocation!");
+                }
+            }
+
+        }
+        // foo.init(); //以北京初始化地图
+         foo.initLocalCity(); //以当前城市初始化地图
+         //foo.initLocalPoint(); //以当前坐标初始化地图
+
+        // 输入关键字的时候，清空input里面的城市信息
+        oKeyword.oninput=function(){
+            oProvince.value = "";
+            oCity.value = "";
+            oAddress.value = "";
+        }
+    }
+
+</script>
+</html>

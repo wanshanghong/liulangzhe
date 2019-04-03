@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.liulangzhe</groupId>
+    <artifactId>liulangzhe-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>cn.liulangzhe</groupId>
+  <artifactId>liulangzhe-manager</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <dependencies>
+  	
+  	<dependency>
+  		<groupId>mysql</groupId>
+  		<artifactId>mysql-connector-java</artifactId>
+  	</dependency>
+  </dependencies>
+  <!-- 如果不添加此节点mybatis的mapper.xml文件都会被漏掉。 -->
+	<build>
+		<resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+	</build>
+  
+	<modules>
+		<module>liulangzhe-manager-interface</module>
+		<module>liulangzhe-manager-pojo</module>
+		<module>liulangzhe-manager-dao</module>
+		<module>liulangzhe-manager-service</module>
+		<module>liulangzhe-manager-web</module>
+	</modules>
+</project>

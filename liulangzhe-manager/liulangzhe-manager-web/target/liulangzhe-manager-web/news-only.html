@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>流浪者 - 宠物新闻</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{
+            height: 8888px;
+        }
+        *{
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        /*头*/
+        header{
+            height: 20px;
+            padding: 10px 0 10px 0;
+            background-color: #f2473d;
+            border-bottom: 1px solid #ccc;
+        }
+        .logo {
+            width: 150px;
+            height: 60px;
+            float: left;
+            background: url("images/logo.png") no-repeat;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .nav{
+            float: right;
+            height: 20px;
+        }
+        .nav ul li{
+            width: 50px;
+            height: 20px;
+            text-align: center;
+            float: left;
+            position: relative;
+            margin: 0 15px 0 15px;
+            line-height: 20px;
+        }
+        .bd2{
+            border-bottom: 3px solid #ffffff;
+            padding-bottom: 7px;
+        }
+        .nav .lastli{
+            margin-right: 50px;
+        }
+        .nav ul li:hover{
+            border-bottom: 3px solid #ffffff;
+            padding-bottom: 7px;
+        }
+        .nav a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 12px;
+        }
+
+        .zhuce,.land,address{
+            float: right;
+            text-decoration: none;
+            font-size: 14px;
+            color: #ffffff;
+        }
+        .zhuce{
+            margin-right: 20px;
+            border-left: 1px solid #ffffff;
+            padding-left: 50px;
+        }
+        .land{
+            margin-right: 150px;
+        }
+        header address{
+            height: 20px;
+            line-height: 20px;
+            padding-left: 50px;
+            font-style: normal;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .hd{
+            overflow: hidden;
+        }
+        header address ul li{
+            padding-top: 5px;
+            height: 25px;
+            line-height: 25px;
+        }
+        header address ul li:hover{
+            text-decoration: underline;
+        }
+        .news-bar{
+            margin-top: 30px;
+            margin-left: 18px;
+        }
+        .news-bar ul{
+            background: url("images/news-bar.png") no-repeat center left;
+            width: 200px;
+            height: 32px;
+            padding-left: 40px;
+            line-height: 32px;
+        }
+        .news-bar ul li{
+            float: left;
+            padding-right: 10px;
+        }
+        .news-bar ul li a{
+            color: #666;
+        }
+        .news-bar ul li a:hover{
+            text-align: center;
+            color: #f2473d;
+        }
+        .news-main{
+            background-color: #fff;
+            width: 100%;
+            height: 800px;
+        }
+        .news-main .news-title{
+            font-size: 32px;
+            padding: 20px;
+            font-weight: 800;
+        }
+        .news-main .news-time{
+            margin: 0 20px 0 20px;
+            padding-bottom: 10px;
+            font-size: 16px;
+            color: #666;
+            border-bottom: dotted 1px #ccc;
+        }
+        .news-main p{
+            padding: 20px;
+            line-height: 40px;
+            font-size: 16px;
+            text-indent:32px
+        }
+        i,b{
+            position: absolute;
+        }
+        b{
+            width: 18px;
+            height: 40px;
+            top: -10px;
+            right: 0;
+            font-size: 24px;
+            font-weight: 400;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        i{
+            width: 18px;
+            height: 20px;
+            font-style: normal;
+            top: 19px;
+            right: 130px;
+            overflow: hidden;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a href="land.html" class="land">登录</a>
+    <a href="registe.html" class="zhuce">注册</a>
+    <address id="user" class="hd"></address>
+    <div class="w">
+        <div class="nav">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#">联系客服</a></li>
+                <li class="lastli"><a href="#">APP下载</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="cl"></div>
+<div class="w">
+    <div class="logo"></div>
+    <div class="sousuo">
+        <input type="text" placeholder="请输入你要查找的话题名称"><button>搜索</button>
+    </div>
+</div>
+<div class="cl"></div>
+<div class="w">
+    <div class="news-bar">
+        <ul>
+            <li><a href="index.html">流浪者</a></li>
+            <li>></li>
+            <li><a href="news.html">猫狗新闻</a></li>
+        </ul>
+    </div>
+    <div class="cl"></div>
+    <div class="news-main">
+        <div class="news-title">浪猫把轮胎当猫抓板磨爪 抱着轮胎当场睡着啦</div>
+        <div class="news-time">更新时间: <span>2019-03-12</span></div>
+        <p>
+            不知为何车子的轮胎很受猫咪的青睐，可能是抓起来手感很好，经常可以看到浪猫把轮胎当猫抓板磨爪。日本一位网友某天就目击有隻虎斑猫正在抓一台重机的轮胎，但看着看着觉得奇怪，怎么猫咪抱着轮胎一动也不动?走近一看才发现，牠竟然磨爪磨到一半当场睡着啦!网友momimomi某天看到一隻虎斑浪浪正抱着一台重机的轮胎，好像准备开始磨爪子的样子。但他在旁边看了一会，想说这隻猫怎么都不动，走近一看，原来牠老兄抱着轮胎就这样睡着啦!这样子也能睡，不知道是该说牠太没戒心还是这轮胎抱起来太舒服啊～
+        </p>
+    </div>
+</div>
+</body>
+</html>
+<script src="js/news-only.js"></script>
+<script src="js/base.js"></script>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 写Sql语句   -->
+<mapper namespace="cn.liulangzhe.mapper.TribuneMapper">
+	<!-- 查找所有的论坛 -->
+	<select id="FindAllTribune" resultType="cn.liulangzhe.pojo.Tribune">
+		select *from tribune
+	</select>
+	
+	<!-- 通过论坛ID(tribuneId)查找论坛 -->
+	<select id="FindTribuneBytribuneId" parameterType="Integer"
+	        resultType="cn.liulangzhe.pojo.Tribune">
+		select *from tribune where tribune_id=#{tribuneId}
+	</select>
+</mapper>

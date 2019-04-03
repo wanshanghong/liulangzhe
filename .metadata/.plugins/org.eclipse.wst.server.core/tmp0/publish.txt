@@ -1,0 +1,8 @@
+#Tomcat publish data
+#Wed Apr 03 22:15:32 CST 2019
+org.eclipse.jst.j2ee.server\:liulangzhe-manager-dao=D\:\\apache-tomcat-8.5.38\\apache-tomcat-8.5.38\\webapps\\liulangzhe-manager-web\\WEB-INF\\lib\\liulangzhe-manager-dao-0.0.1-SNAPSHOT.jar
+org.eclipse.jst.j2ee.server\:liulangzhe-manager-service=D\:\\apache-tomcat-8.5.38\\apache-tomcat-8.5.38\\webapps\\liulangzhe-manager-web\\WEB-INF\\lib\\liulangzhe-manager-service-0.0.1-SNAPSHOT.jar
+org.eclipse.jst.jee.server\:/binary\:D\:\\Apache\\repository\\org\\springframework\\spring-web\\4.2.4.RELEASE\\spring-web-4.2.4.RELEASE.jar=D\:\\apache-tomcat-8.5.38\\apache-tomcat-8.5.38\\webapps\\liulangzhe-manager-web\\WEB-INF\\lib\\spring-web-4.2.4.RELEASE.jar
+org.eclipse.jst.jee.server\:liulangzhe-manager-web=D\:\\apache-tomcat-8.5.38\\apache-tomcat-8.5.38\\webapps\\liulangzhe-manager-web
+org.eclipse.jst.j2ee.server\:liulangzhe-manager-interface=D\:\\apache-tomcat-8.5.38\\apache-tomcat-8.5.38\\webapps\\liulangzhe-manager-web\\WEB-INF\\lib\\liulangzhe-manager-interface-0.0.1-SNAPSHOT.jar
+org.eclipse.jst.j2ee.server\:liulangzhe-manager-pojo=D\:\\apache-tomcat-8.5.38\\apache-tomcat-8.5.38\\webapps\\liulangzhe-manager-web\\WEB-INF\\lib\\liulangzhe-manager-pojo-0.0.1-SNAPSHOT.jar

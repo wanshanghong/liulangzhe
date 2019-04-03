@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 8 resources" deleteContents="false" description="Delete 8 resources" element1="/liulangzhe-common" element2="/liulangzhe-manager" element3="/liulangzhe-manager-dao" element4="/liulangzhe-manager-interface" element5="/liulangzhe-manager-pojo" element6="/liulangzhe-manager-service" element7="/liulangzhe-manager-web" element8="/liulangzhe-parent" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="8" stamp="1554300696329"/>
+</session>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 写Sql语句   -->
+<mapper namespace="cn.liulangzhe.mapper.AnimalMapper">
+	<!-- 查找所有的宠物 -->
+	<select id="FindAllAnimal" resultType="cn.liulangzhe.pojo.Animal">
+		select *from animal
+	</select>
+	
+	<!-- 查找用户的动物(useid) -->
+	<select id="FindAllAnimalByuserid" parameterType="Integer"
+	        resultType="cn.liulangzhe.pojo.Animal">
+		select *from animal where userid=#{userid}
+	</select>
+	
+	<!-- 查找宠物店的宠物（sid） -->
+	<select id="FindAllAnimalBysid" parameterType="Integer"
+	        resultType="cn.liulangzhe.pojo.Animal">
+		select *from animal where sid=#{sid}
+	</select>
+	
+	<!-- 查找宠物店的宠物（animal_id） -->
+	<select id="FindAllAnimalByanimal_id" parameterType="Integer"
+	        resultType="cn.liulangzhe.pojo.Animal">
+		select *from animal where animal_id=#{animalId}
+	</select>
+</mapper>

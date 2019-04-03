@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心 - 流浪者</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/message.css">
+    <link rel="stylesheet" href="css/fenye.css">
+</head>
+<body>
+<header>
+    <a href="land.html" class="land">登录</a>
+    <a href="registe.html" class="zhuce">注册</a>
+    <address id="user" class="hd"></address>
+    <div class="w">
+        <div class="nav">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#">联系客服</a></li>
+                <li class="lastli"><a href="#">APP下载</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="cl"></div>
+<div class="w">
+    <div class="messages-l">
+        <div class="userimgbox">
+            <div class="touxiang-m">
+            </div>
+            <!--<ul>-->
+                <!--&lt;!&ndash;<li class="last">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<a href="#">消息</a><span></span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+            <!--</ul>-->
+            <div class="guanzhu">
+                <div class="woguanzhu"><a href="javascript:void(0);" >我关注的人</a><span></span></div>
+                <div class="guanzhuwo"><a href="javascript:void(0);" >关注我的人</a><span></span></div>
+            </div>
+        </div>
+        <div class="ziliao">
+            <ul>
+                <!--<li><a href="#">编辑个人资料</a></li>-->
+                <li><a href="#">修改密码</a></li>
+                <li><a href="#">变更手机</a></li>
+                <li><a href="#">变更邮箱</a></li>
+                <li><a href="#">领养记录</a></li>
+                <li><a href="#">我的足迹</a></li>
+                <li><a href="#">消息设置</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="messages-r" id="messages-r">
+        <ul class="messages-r-ul">
+            <li class="bd1">我的话题<span></span></li>
+            <!--<li>我的提问<span></span></li>-->
+            <!--<li>我的回答<span></span></li>-->
+            <li>我的关注<span></span></li>
+            <li>关注我的<span></span></li>
+        </ul>
+        <div class="cl"></div>
+        <div class="luntanbody" id="luntanbody">
+            <div class="zuixin" id="zuixin" ></div>
+
+            <!--翻页-->
+            <div id="page-nation"></div>
+
+        </div>
+
+        <div class="guanzhume" id="guanzhume" style="display: none;">
+            <ul>
+                <li><img src="images/touxiang.jpg"  alt=""><h1>张三</h1><button>关注 +</button></li>
+                <li><img src="images/touxiang.jpg"  alt=""><h1>李四</h1><button>关注 +</button></li>
+                <li><img src="images/touxiang.jpg"  alt=""><h1>王五</h1><button>关注 +</button></li>
+                <li><img src="images/touxiang.jpg"  alt=""><h1>六六六</h1><button>关注 +</button></li>
+            </ul>
+        </div>
+        <div class="meguanzhu" id="meguanzhu" style="display: none;">
+            <ul>
+                <li><img src="images/touxiang.jpg"  alt=""><h1>张三</h1><button>已关注</button></li>
+                <li><img src="images/touxiang.jpg"  alt=""><h1>张三</h1><button>已关注</button></li>
+                <li><img src="images/touxiang.jpg"  alt=""><h1>张三</h1><button>已关注</button></li>
+                <li><img src="images/touxiang.jpg"  alt=""><h1>张三</h1><button>已关注</button></li>
+            </ul>
+        </div>
+        <div class="yulan" style="display: none;">
+            <img src="" alt="">
+        </div>
+    <div class="cl"></div>
+</div>
+
+
+
+
+
+
+</div>
+</body>
+</html>
+<script src="js/base.js"></script>
+<script src="js/message.js"></script>
+<script src="js/fenye.js"></script>
+
+<script>
+
+    //分页调用方法
+
+    const Api=new pageNation({
+
+        el:"#page-nation",//分页器位置
+
+        page:1,//当前页
+
+        size:3,//默认5,10,15,20
+
+        total:3,//数据总条数
+
+        styUrl:'css/fenye.css',//样式地址（可修改）
+
+        IsShowBtn: {//设置需要显示的按钮
+
+            choosePageSize: false,//是否显示下拉选项
+
+            IsShowPrevOrNextBtn: true,//是否显示上一页下一页按钮
+
+            IsShowEnterBtn: true,//是否显示跳转输入
+
+            IsShowTotalPage:true//是否显示总页数
+
+        },
+
+        callback:function(page,size,total){
+
+            console.log(page,size,total);
+
+            //此处为ajax请求
+            var xhr = new XMLHttpRequest();
+            xhr.open("post","11.html");
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(page);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    var tiezibox = document.getElementsByClassName("tiezibox");
+                    for(var i = 0;i<tiezibox.length;i++){
+                        hide(tiezibox[i]);
+                    }
+                    if(total-(page-1)*size>=size){
+                        for(var j = 0;j<size;j++){
+                            show(tiezibox[(page-1)*3+j]);
+                        }
+                    }
+                    else{
+                        for(var k = 0;k<total-(page-1)*size;k++){
+                            show(tiezibox[(page-1)*3+k]);
+                        }
+                    }
+                }
+            }
+        }
+
+    });
+
+</script>
+
+
+
+

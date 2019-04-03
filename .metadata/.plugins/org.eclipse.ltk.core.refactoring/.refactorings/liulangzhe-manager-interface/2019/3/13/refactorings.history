@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;cn.liulangzhe.service.Tribune&apos; to &apos;TribuneService&apos;&#x0D;&#x0A;- Original project: &apos;liulangzhe-manager-interface&apos;&#x0D;&#x0A;- Original element: &apos;cn.liulangzhe.service.Tribune&apos;&#x0D;&#x0A;- Renamed element: &apos;cn.liulangzhe.service.TribuneService&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Tribune&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;cn.liulangzhe.service{Tribune.java[Tribune" matchStrategy="1" name="TribuneService" qualified="false" references="true" similarDeclarations="false" stamp="1553519755286" textual="false" version="1.0"/>
+</session>

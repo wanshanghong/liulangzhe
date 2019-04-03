@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 写Sql语句   -->
+<mapper namespace="cn.liulangzhe.mapper.PostMapper">
+
+
+	<!-- 添加帖 -->
+	<insert id="PostInsert" parameterType="cn.liulangzhe.pojo.Post">
+		<selectKey keyProperty="postId" resultType="Integer" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into post(post_title,post_content,attention_amount,post_date,img_path1,
+		                 img_path2,img_path3,img_path4,img_path5,img_path6,img_path7,
+		                 img_path8,img_path9,video_path,userid)
+		values (#{postTitle},#{postContent},#{attentionAmount},#{postDate},#{imgPath1},
+		        #{imgPath2},#{imgPath3},#{imgPath4},#{imgPath5},#{imgPath6},#{imgPath7}
+		        ,#{imgPath8},#{imgPath9},#{videoPath},#{userid})
+	</insert>
+	
+	
+	
+	<!-- 查询帖(通过id) -->
+	<select id="SelectIdPost" parameterType="Integer" resultType="cn.liulangzhe.pojo.Post">
+		select * from post where post_id=#{postId}
+		
+	</select>
+	
+	
+	<!--  
+	private int postId;						//贴ID
+	private String postTitle;	            //帖标题
+	private String username;			    //发送者名
+	private String userphoto;				//用户头像
+	private String postContent;				//贴内容
+	
+	private String attentionAmount;			//点赞数量
+	private Date postDate;						//发表时间
+	private String imgPath1;					//图片1
+	private String imgPath2;					//图片2
+	private String imgPath3;					//图片3
+	private String imgPath4;					//图片4
+	private String imgPath5;					//图片5
+	private String imgPath6;					//图片6
+	private String imgPath7;					//图片7
+	private String imgPath8;					//图片8
+	private String imgPath9;					//图片9
+	private String videoPath;					//视频
+	private int userid
+	-->
+	<!-- 查所有的贴，按时间来排列 -->
+	<select id="FindAllPost" resultType="cn.liulangzhe.pojo.Post">
+	SELECT post.*,user.username,user.userphoto FROM 
+			post
+			JOIN user ON
+			post.userid=user.userid
+			order by post_date desc
+	 </select>
+	 
+	 
+	 
+	 <!-- 点赞功能 -->
+	 <update id="thumbs_up">
+	 	update post set attention_amount=attention_amount+1 where post_id=#{postId}
+	 </update>
+	 
+	 
+	 
+	 
+	<!-- 转发功能 -->
+	<insert id="transmit" parameterType="map">
+		<selectKey keyProperty="transmitid" resultType="Integer" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into transmit (userid,postid)values (#{userid},#{postid})
+	</insert>
+	
+	
+	
+	
+	<!-- 查找贴(post_id) -->
+	<select id="FindPostById" parameterType="Integer" resultType="cn.liulangzhe.pojo.Post">
+		select * from post where post_id=#{postId}
+	</select>
+	
+	<!--  通过用户id查找帖 -->
+	<select id="FindPostByUserId" parameterType="Integer" resultType="cn.liulangzhe.pojo.Post">
+		SELECT t1.*,user.username,user.userphoto FROM 
+			(SELECT *FROM post WHERE userid=#{userid}) AS t1
+			JOIN USER ON
+			t1.userid=user.userid
+	</select>
+	
+	<!-- 评论帖 -->
+	<insert id="Comment_post" parameterType="cn.liulangzhe.pojo.Post_Comment">
+		insert into post_comment (post_id,commentatorid,commentcontent) values 
+			   (#{postId},#{userid},#{commentContent})
+	</insert>
+	<!-- 
+	private int postId;       //帖ID
+	private int userid;       //评论人id
+	private String username;	  //评论人名字
+	private String userphoto;     //评论人头像
+	private String commentContent;   //评论内容
+	private int praiseAmount;        //点赞数量
+	 -->
+	
+	<select id="showAllByPostid" parameterType="Integer" resultType="cn.liulangzhe.pojo.Post_Comment">
+		select *form post_comment where post_id
+	</select>
+</mapper>

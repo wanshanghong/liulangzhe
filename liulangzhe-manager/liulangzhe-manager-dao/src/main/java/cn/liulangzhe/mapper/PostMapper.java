@@ -1,0 +1,37 @@
+package cn.liulangzhe.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import cn.liulangzhe.pojo.Post;
+import cn.liulangzhe.pojo.Post_Comment;
+import net.sf.json.JSONArray;
+
+public interface PostMapper {
+	//发帖上传图片
+	public int PostInsert(Post post);
+	
+	//ID查帖
+	public Post SelectIdPost(int postId);
+	
+	//加载所有的帖
+	public List<Post> FindAllPost();
+
+	//点赞
+	public Post thumbs_up(int postId);
+	
+	//转发功能
+	public int transmit(Map<Object, Object> map);
+
+	//查找贴(post_id)
+	public Post FindPostById(int postId);
+	
+	//通过用户ID来查找帖
+	public List<Post> FindPostByUserId(int userid);
+	
+	//评论帖
+	public boolean Comment_post(Post_Comment postcomment);
+
+	//通过贴id查询回复
+	public JSONArray showAllByPostid(int postId);
+}

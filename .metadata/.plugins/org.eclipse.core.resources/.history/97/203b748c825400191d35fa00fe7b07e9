@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈士奇 - 流浪者</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/luntan-hashiqi.css">
+</head>
+<body>
+<header>
+    <a href="land.html" class="land">登录</a>
+    <a href="registe.html" class="zhuce">注册</a>
+    <address id="user" class="hd"></address>
+    <div class="w">
+        <div class="nav">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#">联系客服</a></li>
+                <li class="lastli"><a href="#">APP下载</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="cl"></div>
+<div class="w">
+    <div class="logo"></div>
+    <div class="sousuo">
+        <input type="text" placeholder="请输入你要查找的话题名称"><button>搜索</button>
+    </div>
+</div>
+<div class="cl"></div>
+<div class="w">
+
+    <div class="luntanhead" id="luntanhead">
+        <ul>
+            <li>最新</li>
+            <li>热门</li>
+            <li>问答</li>
+        </ul>
+        <button class="fatiebtn">发帖</button>
+        <button class="tiwenbtn">提问</button>
+    </div>
+    <div class="cl"></div>
+    <div class="luntan-r">
+        <div class="biaozhi" id="logo-right">
+            <img src="images/dog4.jpg" alt="">
+            <h2>哈士奇社区</h2>
+            <p>这里是哈士奇养主们交流的天地</p>
+            <section>
+                发帖 : <span>8888</span>&nbsp&nbsp&nbsp
+                关注 : <span>8888</span>
+            </section>
+            <button>关注</button>
+        </div>
+        <div class="rank">
+            <h3>社区热帖排行</h3>
+            <ol>
+                <li><em class="top">1</em><a href="#">2018哈士奇美国国家展</a><span>2000</span></li>
+                <li><em class="top">2</em><a href="#">哈士奇犬狗粮,全民狂欢嘉年华</a><span>1233</span></li>
+                <li><em class="top">3</em><a href="#">哈士奇知识—— 如何训练篇—— </a><span>442</span></li>
+                <li><em>4</em><a href="#">天猫双11全球狂欢节,哈士奇纯种多少钱,通用5折更超值! </a><span>233</span></li>
+                <li><em>5</em><a href="#">挚爱的女儿 “小Seven” 的成长记录贴 ～ </a><span>123</span></li>
+                <li><em>6</em><a href="#">【公告】跑丢一年的哈自己回家贴处理办法 </a><span>56</span></li>
+                <li><em>7</em><a href="#">成长记录贴：Niko萌化了我爹妈反对养狗的心！不断更新中~~ </a><span>46</span></li>
+                <li><em>8</em><a href="#">“公主”的阁楼！欢迎粑粑麻麻们常来做客呦~新片不断奉上！</a><span>23</span></li>
+                <li><em>9</em><a href="#">旺仔成长贴</a><span>12</span></li>
+                <li><em>10</em><a href="#">为Mocha Chan建个新帖，记录这二货帅锅的成长</a><span>7</span></li>
+            </ol>
+        </div>
+    </div>
+    <div class="luntanbody" id="luntanbody">
+        <div class="zuixin" id="zuixin" >
+
+        </div>
+        <!--翻页-->
+        <div id="page-nation"></div>
+
+        <div class="wenda" id="wenda">
+
+        </div>
+    </div>
+    <div class="cl"></div>
+    <div class="write">
+        <div class="w">
+        <form id="form1">
+            <h3>发起帖子</h3>
+            <input type="text" name="postid" id="posttitle" placeholder="帖子的标题">
+            <input type="file" name="postimg" id="uploadpic" style="display: none" accept="image/png,image/jpeg, image/gif"  multiple>
+            <input type="file" name="postvid" id="uploadvid" style="display: none" accept="video/*">
+            <a id="pic">添加图片</a>
+            <a id="vid">添加视频</a>
+            <textarea name="postcontent" id="content" cols="30" rows="10" placeholder="帖子的内容"></textarea>
+
+
+            <div class="yulan" style="display: none;">
+                <img src="" alt="">
+            </div>
+                <input type="button" value="发表" id="submit" >
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>
+<script src="js/base.js"></script>
+<script src="js/hashiqi.js"></script>
+<script src="js/fenye.js"></script>
+<script>
+
+    //分页调用方法
+
+    const Api=new pageNation({
+
+        el:"#page-nation",//分页器位置
+
+        page:1,//当前页
+
+        size:3,//默认5,10,15,20
+
+        total:3,//数据总条数
+
+        styUrl:'css/fenye.css',//样式地址（可修改）
+
+        IsShowBtn: {//设置需要显示的按钮
+
+            choosePageSize: false,//是否显示下拉选项
+
+            IsShowPrevOrNextBtn: true,//是否显示上一页下一页按钮
+
+            IsShowEnterBtn: true,//是否显示跳转输入
+
+            IsShowTotalPage:true//是否显示总页数
+
+        },
+
+        callback:function(page,size,total){
+
+            console.log(page,size,total);
+
+            //此处为ajax请求
+            var xhr = new XMLHttpRequest();
+            xhr.open("post","11.html");
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(page);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    var tiezibox = document.getElementsByClassName("tiezibox");
+                    for(var i = 0;i<tiezibox.length;i++){
+                        hide(tiezibox[i]);
+                    }
+                    if(total-(page-1)*size>=size){
+                        for(var j = 0;j<size;j++){
+                            show(tiezibox[(page-1)*3+j]);
+                        }
+                    }
+                    else{
+                        for(var k = 0;k<total-(page-1)*size;k++){
+                            show(tiezibox[(page-1)*3+k]);
+                        }
+                    }
+                }
+            }
+        }
+
+    });
+
+</script>
+
