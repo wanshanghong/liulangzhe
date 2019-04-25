@@ -83,13 +83,12 @@ public class PostController{
 				path1="/static/images/"+uuid+"."+imageName;
 				imgPath1.transferTo(new File(pathRoot+path1));
 				}
-			
+			path1="/liulangzhe-manager-web"+path1;
 			post.setImgPath1(path1);
 			post.setPostTitle(postTitle);
 			post.setPostContent(postContent);
 			post.setUserid(userid);
-			
-			
+			post.setAttentionAmount("1");
 			System.out.println(path1);	
 
 			//获取当前时间
@@ -228,6 +227,21 @@ public class PostController{
 		System.out.println("加查找用户下的帖功能触发......请求信息：无");
 		List<Post> list=new ArrayList<Post>();
 		list=postService.FindPostByUserId(userid);
+		System.out.println("list:"+list);
+		JSONArray jsonArray = JSONArray.fromObject(list);
+		System.out.println("查找用户下的帖功能结束......回应信息：post："+jsonArray.toString());
+		return jsonArray.toString();
+
+	}
+	
+	//通过贴ID获取贴
+	@RequestMapping("FindPostByPostId.action")
+	@ResponseBody
+	public String FindPostByPostId(@RequestParam("postId") int postId,HttpServletRequest request,HttpServletResponse response,
+			HttpSession session) throws IOException{
+		System.out.println("通过贴ID获取贴功能触发......请求信息：postId："+postId);
+		List<Post> list=new ArrayList<Post>();
+		list=postService.FindPostByPostId(postId);
 		System.out.println("list:"+list);
 		JSONArray jsonArray = JSONArray.fromObject(list);
 		System.out.println("查找用户下的帖功能结束......回应信息：post："+jsonArray.toString());

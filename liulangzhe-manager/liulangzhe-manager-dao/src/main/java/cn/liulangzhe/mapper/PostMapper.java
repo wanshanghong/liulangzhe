@@ -34,4 +34,6 @@ public interface PostMapper {
 
 	//通过贴id查询回复
 	public JSONArray showAllByPostid(int postId);
+
+	public List<Post> FindPostByPostId(int postId);
 }

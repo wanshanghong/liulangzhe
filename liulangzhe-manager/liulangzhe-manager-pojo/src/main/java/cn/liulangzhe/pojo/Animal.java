@@ -1,14 +1,14 @@
 package cn.liulangzhe.pojo;
 
 public class Animal {
-	private int animalId;
-	private String animalName;
-	private String animalRank;
-	private String animalImagePath;
-	private String animalDesc;
-	private int userid;
-	private int sid;
-	private int animalAge;
+	private int animalId;			//动物ID
+	private String animalName;		//动物名字
+	private String animalRank;		//动物等级
+	private String animalImagePath;	//动物头像
+	private String animalDesc;		//动物描述
+	private int userid;				//动物主人
+	private int sid;				//救助站
+	private int animalAge;			//动物年龄
 	public int getAnimalId() {
 		return animalId;
 	}

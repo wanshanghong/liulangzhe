@@ -53,17 +53,17 @@ mima.oninput = function (ev) {
 function login() {
     var xhr = new XMLHttpRequest;
     var fd = new FormData(landtable);
-    xhr.open("post","11.html");
-    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.open("post","http://47.103.6.223:8080/liulangzhe-manager-web/login.action");
+    //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.send(fd);
     xhr.onreadystatechange = function () {
         var json = JSON.parse(xhr.responseText);
-        if(xhr.readyState == 4 && xhr.status == 200 && json[0].userid == ""){
+        if(xhr.readyState == 4 && xhr.status == 200 && (json.userid == ""||undefined||null)){
             err.style.display = "block";
         }
-        else if(xhr.readyState == 4 && xhr.status == 200 && json[0].userid != ""){
-            cookie.set("username",json[0].username,7);
-            cookie.set("userid",json[0].userid,7);
+        else if(xhr.readyState == 4 && xhr.status == 200 &&  (json.userid != ""||undefined||null)){
+            cookie.set("username",json.username,7);
+            cookie.set("userid",json.userid,7);
             window.location.href='index.html';
         }
     }

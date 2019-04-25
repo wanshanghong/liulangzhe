@@ -32,4 +32,7 @@ public interface PostService {
 	//通过贴id查询评论
 	public JSONArray showAllByPostid(int postId);
 	
+	//通过贴ID查询贴id
+	public List<Post> FindPostByPostId(int postId);
+	
 }

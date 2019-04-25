@@ -84,5 +84,11 @@ public class PostServiceImpl implements PostService{
 		// TODO Auto-generated method stub
 		return postMapper.showAllByPostid(postId);
 	}
+
+	@Override
+	public List<Post> FindPostByPostId(int postId) {
+		// TODO Auto-generated method stub
+		return postMapper.FindPostByPostId(postId);
+	}
 	
 }

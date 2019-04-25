@@ -54,3 +54,7 @@ var address = document.getElementById("user");
 address.onmouseover = function (ev) {
     address.className = "";
 };
+
+document.onmouseout = function (ev) {
+    address.className = "hd";
+};

@@ -120,7 +120,7 @@
                         var myIcon = new BMap.Icon("images/chongwu.png", new BMap.Size(32,32));
                         for(var i=0;i<json.length;i++) {
                             var opts = {
-                                title  : json[i].sid,      //标题
+                                title  : json[i].address,      //标题
                                 width  : 290,             //宽度
                                 height : 90,              //高度
                                 enableSendToPhone:false,    //隐藏发送短信按钮
@@ -136,7 +136,7 @@
                             map.addOverlay(marker1);               // 将标注添加到地图中
                             var content = json[i].content;
                             addClickHandler(content,marker1);
-                            var label = new BMap.Label(content.toString(),{offset:new BMap.Size(-11,23)});
+                            var label = new BMap.Label(json[i].address.toString(),{offset:new BMap.Size(-17,23)});
                             label.setStyle({
                                 color : "#f2473d",
                                 fontSize : "12px",

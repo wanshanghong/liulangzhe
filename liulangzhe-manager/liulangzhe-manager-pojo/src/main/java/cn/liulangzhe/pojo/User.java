@@ -1,12 +1,12 @@
 package cn.liulangzhe.pojo;
 
 public class User {
-	private int userid;
-	private String username;
-	private String password;
-	private String email;
-	private String phone;
-	private String userphoto;
+	private int userid;			//用户id
+	private String username;	//用户名字
+	private String password;	//用户密码
+	private String email;		//用户email
+	private String phone;		//用户电话
+	private String userphoto;	//用户头像
 	public int getUserid() {
 		return userid;
 	}

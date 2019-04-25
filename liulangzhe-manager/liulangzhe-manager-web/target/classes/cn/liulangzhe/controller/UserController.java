@@ -65,9 +65,17 @@ public class UserController {
 		
 		user=userService.login(username,password);
 		System.out.println(user);
-		session.setAttribute("user", user);
-		JSONObject json=JSONObject.fromObject(user);
-		System.out.println("用户登陆功能结束......响应结果："+json.toString());
+		//session.setAttribute("user", user);
+		JSONObject json;
+		if(user==null)
+		{
+			json=new JSONObject();
+			json.put("userid", "");
+		}else{
+			json=JSONObject.fromObject(user);
+		}
+		
+		System.out.println("用户登陆功能结束......响应结果：json.toString():"+json.toString());
 		return json.toString();
 	}
 	

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!--<meta http-equiv="Access-Control-Allow-Origin" content="*">-->
     <title>哈士奇 - 流浪者</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/luntan-hashiqi.css">
@@ -73,7 +74,7 @@
 
         </div>
         <!--翻页-->
-        <div id="page-nation"></div>
+       <div id="page-nation"></div>
 
         <div class="wenda" id="wenda">
 
@@ -85,8 +86,8 @@
         <form id="form1">
             <h3>发起帖子</h3>
             <input type="text" name="postTitle" id="posttitle" placeholder="帖子的标题">
-            <input type="file" name="imgPath1" id="uploadpic" style="display: none" accept="image/png,image/jpeg, image/gif"  multiple>
-            <input type="file" name="videoPath" id="uploadvid" style="display: none" accept="video/*">
+            <input type="file" name="imgPath1" id="uploadpic" style="display: none" accept="image/png,image/jpeg, image/gif, image/jpg"  multiple>
+            <input type="file" name="postvid" id="uploadvid" style="display: none" accept="video/*">
             <a id="pic">添加图片</a>
             <a id="vid">添加视频</a>
             <textarea name="postContent" id="content" cols="30" rows="10" placeholder="帖子的内容"></textarea>
@@ -105,11 +106,12 @@
 <script src="js/base.js"></script>
 <script src="js/hashiqi.js"></script>
 <script src="js/fenye.js"></script>
+<script src="js/fenye.js"></script>
 <script>
 
     //分页调用方法
 
-    const Api=new pageNation({
+    var Api=new pageNation({
 
         el:"#page-nation",//分页器位置
 
@@ -117,7 +119,7 @@
 
         size:3,//默认5,10,15,20
 
-        total:3,//数据总条数
+        total:100,//数据总条数
 
         styUrl:'css/fenye.css',//样式地址（可修改）
 

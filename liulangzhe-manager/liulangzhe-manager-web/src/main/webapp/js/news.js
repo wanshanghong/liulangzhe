@@ -54,19 +54,21 @@ var address = document.getElementById("user");
 address.onmouseover = function (ev) {
     address.className = "";
 };
-
+document.onmouseout = function (ev) {
+    address.className = "hd";
+};
 function gettitle() {
     var xhr = new XMLHttpRequest();
-    xhr.open("post","");
+    xhr.open("post","新闻数据库.html");
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send("11");
     xhr.onreadystatechange = function (ev) {
         if(xhr.readyState == 4 && xhr.status == 200){
-            // var json = JSON.parse(xhr.responseText);
+            var json = JSON.parse(xhr.responseText);
             var news = document.getElementById("news-main");
             var ul = document.createElement("ul");
             news.appendChild(ul);
-            for(var i =0;i<4;i++){
+            for(var i =0;i<json.length;i++){
                 var li = document.createElement("li");
                 ul.appendChild(li);
                 var imgbox = document.createElement("a");
@@ -74,16 +76,16 @@ function gettitle() {
                 imgbox.href = "news-only.html";
                 li.appendChild(imgbox);
                 var img = document.createElement("img");
-                img.src = "http://www.ichong123.com/files/2019/3/4/124/0a.jpg";
-                img.alt = "浪猫把轮胎当猫抓板磨爪 抱着轮胎当场睡着啦";
+                img.src = json[i].titleimg;
+                img.alt = "";
                 imgbox.appendChild(img);
                 var title = document.createElement("a");
                 title.className = "news-title";
                 title.href = "news-only.html";
-                title.innerHTML = "浪猫把轮胎当猫抓板磨爪 抱着轮胎当场睡着啦";
+                title.innerHTML = json[i].title;
                 li.appendChild(title);
                 var content = document.createElement("p");
-                content.innerHTML = "不知为何车子的轮胎很受猫咪的青睐，可能是抓起来手感很好，经常可以看到浪猫把轮胎当猫抓板磨爪。日本一位网友某天就目击......";
+                content.innerHTML = json[i].content;
                 li.appendChild(content);
                 var detailed = document.createElement("a");
                 detailed.href = "news-only.html";

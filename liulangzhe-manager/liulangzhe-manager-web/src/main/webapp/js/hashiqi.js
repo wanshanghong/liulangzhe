@@ -1,11 +1,11 @@
 //打开页面请求数据
 function ajax1(huidiao) {
-    var xhr = new XMLHttpRequest;
-    xhr.open("post","论坛数据库.html");
+    var xhr = new XMLHttpRequest();
+    xhr.open("post","http://47.103.6.223:8080/liulangzhe-manager-web/loadAllPost.action");//http://47.103.6.223:8080/liulangzhe-manager-web/
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send("userid="+cookie.get("userid"));
     xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState == '4' && xhr.status == '200') {
                 //判断是否有用户登陆
                 var username = cookie.get("username");
                 if (username) {
@@ -61,17 +61,19 @@ function ajax1(huidiao) {
                 touxianga.appendChild(touxiangimg);
                 namespan = document.createElement("span");
                 namespan.innerHTML = json[j].username;
-                namespan.setAttribute("userid",json[j].userid);
                 tiezi.appendChild(namespan);
                 titlea = document.createElement("a");
                 titlea.className = "postId";
                 titlea.href = "post1.html";
+                titlea.setAttribute("userid",json[j].userid);
+                titlea.setAttribute("postId",json[j].postId);
                 tiezi.appendChild(titlea);
                 title = document.createElement("h1");
                 title.innerHTML = json[j].postTitle;
                 titlea.appendChild(title);
                 time = document.createElement("time");
-                time.innerHTML = json[j].postDate.year+"/"+json[j].postDate.month+"/"+json[j].postDate.day;
+                var date = new Date(json[j].postDate.time);
+                time.innerHTML = date.getFullYear() + '/' + (date.getMonth()+1 )+ '/' + date.getDate();
                 tiezi.appendChild(time);
                 content = document.createElement("p");
                 content.className = "tiezicontent";
@@ -95,7 +97,7 @@ function ajax1(huidiao) {
                 footer.innerHTML = "阅读量:";
                 tiezi.appendChild(footer);
                 footerspan = document.createElement("span");
-                footerspan.innerHTML = "1234";
+                footerspan.innerHTML = json[j].attentionAmount;
                 footer.appendChild(footerspan);
                 footera = document.createElement("a");
                 footera.className = "look";
@@ -145,7 +147,6 @@ address.onmouseover = function (ev) {
 document.onmouseout = function (ev) {
     address.className = "hd";
 }
-var postIdArr = [];   //创建一个存放postid的空数组
 function huidiao() {
     var luntanheadlis = document.getElementById("luntanhead").children[0].children;
     function $(id) {return document.getElementById(id);}
@@ -261,16 +262,26 @@ function huidiao() {
 
 
     //进入帖子发送postId
-    var sendpostid = document.getElementsByClassName("postId");
-    for(i =0;i<sendpostid.length;i++){
-        sendpostid[i].index = i;
-        sendpostid[i].onclick = function () {
-            var xhr = new XMLHttpRequest();
-            xhr.open("post","11.html");
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send("postId="+postIdArr[this.index]);
+    function sendpost() {
+        var sendpostid = document.getElementsByClassName("postId");
+        for(i =0;i<sendpostid.length;i++){
+            sendpostid[i].index = i;
+            sendpostid[i].onclick = function () {
+                var userid = sendpostid[this.index].getAttribute("userid");
+                var postid = sendpostid[this.index].getAttribute("postId");
+                var xhr = new XMLHttpRequest();
+                xhr.open("post","11.html");
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send("userid="+userid+"&"+"postId="+postid);
+                xhr.onreadystatechange = function (ev) {
+                    if(xhr.readyState == 4 && xhr.status == 200){
+                        alert("ok");
+                    }
+                }
             }
         }
+    }
+sendpost();
 }
 huidiao();
 
@@ -372,25 +383,26 @@ function postajax() {
     var fd = new FormData(form);
     var title = fd.get("postTitle");
     var content = fd.get("postContent");
+    fd.set("userid",cookie.get("userid"));
     var xhr = new XMLHttpRequest;
-    xhr.open("post", "http://192.168.1.119:8088/liulangzhe-manager-web/sendpost1.action");
-    //xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-    xhr.send(fd);//"+cookie.get("userid")+"
+    xhr.open("post", "http://47.103.6.223:8080/liulangzhe-manager-web/sendpost1.action");
+    // xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+    xhr.send(fd);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-           // if(cookie.get("username")){
+            // if(cookie.get("username")) {
                 alert("发帖成功");
                 var posttitle = document.getElementById("posttitle");
                 var postcontent = document.getElementById("content");
                 posttitle.value = "";
                 postcontent.value = "";
                 location.reload(false);
-            //}
-            /*
-            else{
-                alert("您还未登陆");
-                window.location.href = "land.html";
-            }*/
+            // }
+
+            // else{
+            //     alert("您还未登陆");
+            //     window.location.href = "land.html";
+            // }
         }
     }
 }

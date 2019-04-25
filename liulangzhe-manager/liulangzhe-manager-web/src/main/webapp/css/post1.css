@@ -534,6 +534,10 @@ input{
     text-align: center;
     background-color: #f2473d;
     color: #ffffff;
+    cursor: pointer;
+}
+.huifu button:hover{
+    background-color: #e3473d;
 }
 
 

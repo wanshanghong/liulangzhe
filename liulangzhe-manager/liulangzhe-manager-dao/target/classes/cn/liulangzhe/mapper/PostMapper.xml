@@ -109,4 +109,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="showAllByPostid" parameterType="Integer" resultType="cn.liulangzhe.pojo.Post_Comment">
 		select *from post_comment where post_id=#{postId}
 	</select>
+	
+	<!-- 通过贴id来查找帖 -->
+	<select id="FindPostByPostId" parameterType="Integer" resultType="cn.liulangzhe.pojo.Post">
+		SELECT *FROM 
+		(select * from post where post_id=#{postId}) AS t1 
+		LEFT JOIN user AS t2
+		ON 
+		t1.userid=t2. userid
+
+	</select>
 </mapper>

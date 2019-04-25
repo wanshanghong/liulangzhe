@@ -210,17 +210,19 @@ getanimate();
             x=0;
         }
     },15);
-    var aside = document.getElementById("aside-l");
-    var asidetop = aside.offsetTop;
-    var leader=0,target=0;
-    var time = null;
-    window.onscroll = function (ev) {
-        timer = setInterval(function () {
-            target = scroll().top + asidetop;
-            leader = leader + (target - leader) / 10;
-            aside.style.top = leader + "px";
-        },30);
-    }
+
+    //跟随广告
+    // var aside = document.getElementById("aside-l");
+    // var asidetop = aside.offsetTop;
+    // var leader=0,target=0;
+    // var time = null;
+    // window.onscroll = function (ev) {
+    //     timer = setInterval(function () {
+    //         target = scroll().top + asidetop;
+    //         leader = leader + (target - leader) / 10;
+    //         aside.style.top = leader + "px";
+    //     },30);
+    // }
 
 //猫狗专区点击
     var doglis = document.getElementsByClassName("dog")[0].children[1].children;
